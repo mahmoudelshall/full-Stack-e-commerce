@@ -21,7 +21,31 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'phone',
+        'role_id'
     ];
+
+    // relations
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+    //payments
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+    //Review
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -30,7 +54,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -38,7 +62,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }
